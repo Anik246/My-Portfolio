@@ -9,7 +9,7 @@ export async function GET() {
     const filePath = path.join(
       process.cwd(),
       'public',
-      'Shahriar_Rahman__Resume-braintrust.pdf'
+      'resume.pdf'
     );
 
     const file = await fs.readFile(filePath);
@@ -17,7 +17,7 @@ export async function GET() {
     return new NextResponse(file, {
       headers: {
         'Content-Type': 'application/pdf',
-        'Content-Disposition': 'attachment; filename="Shahriar_Rahman_Resume.pdf"',
+        'Content-Disposition': 'inline',
         'Cache-Control': 'no-store',
       },
     });

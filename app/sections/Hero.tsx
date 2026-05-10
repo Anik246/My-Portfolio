@@ -3,225 +3,148 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Github } from 'lucide-react';
-import HeroIllustration from './HeroIllustration';
+import { ArrowUpRight, Github, FileText, BookOpen, MapPin, Cpu, Telescope } from 'lucide-react';
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 16 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const, delay },
+});
 
 export default function Hero() {
-  // ✅ letter-by-letter (but NO mid-word wrapping)
-  const TITLE_WORDS = ['Shahriar', 'Rahman'];
-
-  const titleContainer = {
-    hidden: {},
-    show: {},
-  };
-
-  // ✅ custom index-based delay so letters animate continuously across words
-  const titleLetter = {
-    hidden: { y: 22, opacity: 0, filter: 'blur(10px)' },
-    show: (i: number) => ({
-      y: 0,
-      opacity: 1,
-      filter: 'blur(0px)',
-      transition: {
-        duration: 0.6,
-        delay: 0.12 + i * 0.04, // ✅ letter-by-letter timing
-        ease: [0.16, 1, 0.3, 1],
-      },
-    }),
-  };
-
-  const plusPop = {
-    hidden: { y: 22, opacity: 0, scale: 0.85, filter: 'blur(10px)' },
-    show: (i: number) => ({
-      y: 0,
-      opacity: 1,
-      scale: 1,
-      filter: 'blur(0px)',
-      transition: {
-        duration: 0.7,
-        delay: 0.12 + i * 0.04,
-        ease: [0.16, 1, 0.3, 1],
-      },
-    }),
-  };
-
-
-  const HERO_CTA_GLASS = [
-    'group relative isolate inline-flex h-[44px] items-center gap-2 rounded-full px-5 text-[14px] font-bold',
-    'text-white/90 bg-black/25 hover:bg-white/5 transition',
-    'shadow-[inset_0_1px_0_rgba(255,255,255,0.10)]',
-    "before:pointer-events-none before:absolute before:inset-0 before:rounded-full before:p-[1.4px] before:content-['']",
-    'before:mix-blend-screen',
-    "before:bg-[radial-gradient(70%_140%_at_86%_-10%,rgba(255,255,255,1)_0%,rgba(255,255,255,0.92)_10%,rgba(255,255,255,0.26)_24%,rgba(255,255,255,0)_46%),radial-gradient(70%_140%_at_8%_112%,rgba(255,255,255,0.98)_0%,rgba(255,255,255,0.82)_12%,rgba(255,255,255,0.20)_26%,rgba(255,255,255,0)_50%),linear-gradient(rgba(255,255,255,0.018),rgba(255,255,255,0.018))]",
-    'before:[-webkit-mask:linear-gradient(#000_0_0)_content-box,linear-gradient(#000_0_0)]',
-    'before:[-webkit-mask-composite:xor]',
-    'before:[mask-composite:exclude]',
-    "after:pointer-events-none after:absolute after:inset-0 after:rounded-full after:content-['']",
-    'after:mix-blend-screen',
-    'after:shadow-[0_0_0_1px_rgba(255,255,255,0.12),0_0_14px_rgba(255,255,255,0.10)]',
-  ].join(' ');
-
   return (
-    <section className="relative isolate overflow-hidden bg-black">
-      {/* ===================== BACKGROUND ===================== */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        {/* 1) Top strip (softer on mobile) */}
-        <div className="absolute -top-28 inset-x-0 h-72 blur-3xl opacity-70 sm:opacity-90 bg-[linear-gradient(90deg,rgba(255,0,170,0.70)_0%,rgba(140,80,255,0.50)_45%,rgba(0,0,0,1)_100%)]" />
+    <section className="pt-16 pb-8 md:pt-20 md:pb-12">
+      <div className="mx-auto max-w-[1280px] px-4 sm:px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-start">
 
-        {/* 2) Vertical lines (mobile shows ~3 lines AND visible) */}
-        <div
-          className="absolute inset-0 opacity-[0.42] sm:opacity-[0.55]
-          [mask-image:radial-gradient(circle_at_50%_25%,#fff_0%,#fff_78%,transparent_100%)]
-          [-webkit-mask-image:radial-gradient(circle_at_50%_25%,#fff_0%,#fff_78%,transparent_100%)]"
-        >
-          <div
-            className="absolute inset-0
-            bg-[repeating-linear-gradient(to_right,rgba(255,255,255,0.45)_0px,rgba(255,255,255,0.45)_0.6px,transparent_0.6px,transparent_150px)]
-            sm:bg-[repeating-linear-gradient(to_right,rgba(255,255,255,0.60)_0px,rgba(255,255,255,0.60)_0.6px,transparent_0.6px,transparent_260px)]"
-          />
-        </div>
+          {/* ── LEFT: Name, bio, CTAs ── */}
+          <motion.div {...fadeUp(0)}>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[68px] font-bold tracking-tight text-white leading-[1.0] mb-6">
+              Shahriar<br />Rahman
+            </h1>
+            <p className="text-lg text-zinc-300 leading-relaxed mb-8 max-w-lg">
+              AI/ML-focused software engineer with a{' '}
+              <span className="text-white font-semibold">published deep learning paper (ICTIS 2025, Springer LNNS)</span>{' '}
+              and hands-on experience building ML-integrated systems in production. Skilled in computer vision,
+              human-computer interaction, and full-stack AI application development.
+            </p>
 
-        {/* 3) Subtle animated sweep (softer on mobile) */}
-        <motion.div
-          className="absolute inset-y-0 -left-[45%] w-[55%] mix-blend-screen opacity-[0.10] sm:opacity-[0.15] blur-[1px]"
-          style={{
-            background:
-              'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.08) 45%, rgba(255,255,255,0) 100%)',
-          }}
-          animate={{ x: ['0%', '200%'] }}
-          transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
-        />
-
-        {/* 4) Vignette (lighter on mobile, darker on sm+) */}
-        <div className="absolute inset-0 sm:hidden bg-[radial-gradient(circle_at_50%_35%,rgba(0,0,0,0)_0%,rgba(0,0,0,0.65)_58%,rgba(0,0,0,1)_100%)]" />
-        <div className="absolute inset-0 hidden sm:block bg-[radial-gradient(circle_at_50%_35%,rgba(0,0,0,0)_0%,rgba(0,0,0,0.78)_58%,rgba(0,0,0,1)_100%)]" />
-
-        {/* 5) Bottom fade (lighter on mobile, stronger on sm+) */}
-        <div className="absolute inset-0 sm:hidden bg-[linear-gradient(to_bottom,rgba(0,0,0,0)_0%,rgba(0,0,0,0.25)_55%,rgba(0,0,0,0.85)_88%,rgba(0,0,0,1)_100%)]" />
-        <div className="absolute inset-0 hidden sm:block bg-[linear-gradient(to_bottom,rgba(0,0,0,0)_0%,rgba(0,0,0,0.35)_55%,rgba(0,0,0,0.92)_88%,rgba(0,0,0,1)_100%)]" />
-      </div>
-
-      {/* ===================== CONTENT ===================== */}
-      <div className="relative mx-auto w-full max-w-[1260px] px-4 pt-[calc(var(--nav-offset,96px)+24px)] md:pt-[calc(var(--nav-offset,96px)+16px)] pb-16">
-        <div className="relative grid min-h-[calc(100svh-var(--nav-offset,96px)-24px)] md:min-h-[calc(100svh-var(--nav-offset,96px)-16px)] content-center gap-10 lg:items-center lg:grid-cols-[1.05fr_0.95fr]">
-          {/* LEFT */}
-          <div className="relative z-10">
-            <motion.p
-              initial={{ y: 10, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.45, ease: 'easeOut' }}
-              className="mb-4 text-[13px] font-extrabold tracking-[0.22em] text-muted"
-            >
-              SOFTWARE ENGINEER
-            </motion.p>
-
-            {/* ✅ Letter-by-letter title animation (no mid-word wraps) */}
-            <motion.h1
-              variants={titleContainer}
-              initial="hidden"
-              animate="show"
-              className="leading-[0.9] text-[64px] font-extrabold tracking-[-0.04em] sm:text-[86px] lg:text-[108px] [text-shadow:0_2px_0_rgba(0,0,0,0.35)]"
-              aria-label="Shahriar Rahman+"
-            >
-              {(() => {
-                let idx = 0;
-
-                return TITLE_WORDS.map((word, wi) => {
-                  const isLast = wi === TITLE_WORDS.length - 1;
-
-                  return (
-                    <span
-                      key={word}
-                      className={`inline-block whitespace-nowrap ${!isLast ? 'mr-[0.28em]' : ''}`}
-                    >
-                      {Array.from(word).map((ch, li) => {
-                        const i = idx++;
-                        return (
-                          <motion.span
-                            key={`${word}-${li}`}
-                            custom={i}
-                            variants={titleLetter}
-                            className="inline-block"
-                          >
-                            {ch}
-                          </motion.span>
-                        );
-                      })}
-
-                      {/* ✅ keep + attached to the last word */}
-                      {isLast && (
-                        <motion.span
-                          custom={idx++}
-                          variants={plusPop}
-                          className="inline-block align-top text-[#ff3b30]"
-                        >
-                          +
-                        </motion.span>
-                      )}
-                    </span>
-                  );
-                });
-              })()}
-            </motion.h1>
-
-            <motion.p
-              initial={{ y: 10, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.45, ease: 'easeOut', delay: 0.18 }}
-              className="mt-6 max-w-[520px] text-[14px] leading-6"
-            >
-              Call me Shahriar. I write code, train models, and build products people can actually use. I work across ML and full-stack — designing systems, building APIs, and getting things live. I like solving problems that matter.
-            </motion.p>
-
-            <motion.div
-              initial={{ y: 10, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.45, ease: 'easeOut', delay: 0.26 }}
-              className="mt-10 flex flex-wrap items-center gap-4"
-            >
-              <Link href="/#contact" className={HERO_CTA_GLASS}>
-                Contact me
-                <ArrowUpRight className="h-[18px] w-[18px] opacity-95 transition-transform group-hover:translate-x-[1px] group-hover:-translate-y-[1px]" />
-              </Link>
-
+            {/* CTAs */}
+            <div className="flex flex-wrap items-center gap-3 mb-8">
               <Link
+                href="/#contact"
+                className="inline-flex items-center gap-2 rounded-xl bg-white text-[#0b0f14] hover:bg-zinc-200 px-5 py-2.5 text-sm font-semibold transition"
+              >
+                Get in touch
+                <ArrowUpRight className="h-4 w-4" />
+              </Link>
+              <a
+                href="/api/resume"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-xl bg-white/[0.05] border border-white/[0.10] hover:bg-white/[0.09] px-5 py-2.5 text-sm font-semibold text-zinc-200 transition"
+              >
+                <FileText className="h-4 w-4" />
+                View CV
+              </a>
+              <a
                 href="https://github.com/Anik246"
                 target="_blank"
-                className="inline-flex h-[44px] items-center gap-2 rounded-full border border-white/18 px-5 text-[14px] font-bold text-white/85 transition hover:text-white hover:border-white/28 hover:bg-white/[0.04]"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-xl bg-white/[0.05] border border-white/[0.10] hover:bg-white/[0.09] px-5 py-2.5 text-sm font-semibold text-zinc-400 transition"
               >
-                <Github className="h-5 w-5" />
+                <Github className="h-4 w-4" />
                 GitHub
-              </Link>
+              </a>
+            </div>
 
-            </motion.div>
-          </div>
-
-          {/* RIGHT - Neural Network Illustration */}
-          <motion.div
-            initial={{ y: 14, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.55, ease: 'easeOut', delay: 0.08 }}
-            className="
-              pointer-events-none
-              absolute inset-0 z-0 flex items-center justify-center
-              lg:pointer-events-auto
-              lg:relative lg:inset-auto lg:z-auto lg:block
-              lg:mx-auto lg:w-full lg:max-w-[560px] lg:ml-auto
-            "
-          >
-            <div className="relative overflow-hidden">
-              <div
-                className="
-                  aspect-[1.2/1]
-                  w-[min(560px,92vw)] lg:w-full
-                  opacity-25 brightness-90 contrast-75 saturate-90
-                  lg:opacity-100 lg:brightness-100 lg:contrast-100 lg:saturate-100
-                "
-              >
-                <HeroIllustration />
-              </div>
+            {/* Location */}
+            <div className="flex flex-wrap gap-2">
+              {[
+                { flag: '🇨🇦', city: 'Scarborough, Ontario' },
+                { flag: '🇧🇩', city: 'Dhaka, Bangladesh' },
+              ].map(({ flag, city }) => (
+                <div
+                  key={city}
+                  className="inline-flex items-center gap-2 rounded-lg bg-white/[0.04] border border-white/[0.07] px-3 py-1.5 text-sm text-zinc-400"
+                >
+                  <MapPin className="h-3.5 w-3.5 shrink-0 text-zinc-600" />
+                  <span>{flag} {city}</span>
+                </div>
+              ))}
             </div>
           </motion.div>
+
+          {/* ── RIGHT: Bento stat cards ── */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+
+            {/* Publication — wide */}
+            <motion.div
+              {...fadeUp(0.08)}
+              className="sm:col-span-2 rounded-2xl bg-white/[0.03] border border-white/[0.08] p-4 sm:p-5 flex items-center justify-between gap-4 hover:border-white/[0.15] transition-colors"
+            >
+              <div className="flex items-center gap-4">
+                <div className="h-11 w-11 shrink-0 rounded-xl bg-indigo-500/10 border border-indigo-500/20 grid place-items-center">
+                  <BookOpen className="h-5 w-5 text-indigo-400" />
+                </div>
+                <div>
+                  <p className="text-xs text-zinc-500 mb-0.5">Peer-reviewed Publication</p>
+                  <p className="text-base font-semibold text-white leading-snug">ICTIS 2025 — Springer LNNS</p>
+                </div>
+              </div>
+              <span className="shrink-0 rounded-md bg-indigo-500/10 border border-indigo-500/20 px-2.5 py-1 text-xs font-semibold text-indigo-400">
+                Published
+              </span>
+            </motion.div>
+
+            {/* Open to opportunities */}
+            <motion.div
+              {...fadeUp(0.12)}
+              className="rounded-2xl bg-white/[0.03] border border-white/[0.08] p-4 sm:p-5 hover:border-white/[0.15] transition-colors"
+            >
+              <div className="h-9 w-9 rounded-xl bg-emerald-500/10 border border-emerald-500/20 grid place-items-center mb-4">
+                <Telescope className="h-4 w-4 text-emerald-400" />
+              </div>
+              <p className="text-xs text-zinc-500 mb-2">Currently Seeking</p>
+              <p className="text-base font-semibold text-white leading-snug mb-1">Graduate Research</p>
+              <p className="text-sm text-zinc-400">MSc opportunities in AI & ML</p>
+            </motion.div>
+
+            {/* Research focus */}
+            <motion.div
+              {...fadeUp(0.16)}
+              className="rounded-2xl bg-white/[0.03] border border-white/[0.08] p-4 sm:p-5 hover:border-white/[0.15] transition-colors"
+            >
+              <div className="h-9 w-9 rounded-xl bg-violet-500/10 border border-violet-500/20 grid place-items-center mb-4">
+                <Cpu className="h-4 w-4 text-violet-400" />
+              </div>
+              <p className="text-xs text-zinc-500 mb-3">Research Focus</p>
+              <div className="flex flex-col gap-1.5">
+                {['Machine Learning', 'Artificial Intelligence', 'Human-Computer Interaction'].map((t) => (
+                  <span key={t} className="text-sm font-medium text-zinc-300">{t}</span>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Core tech — wide */}
+            <motion.div
+              {...fadeUp(0.2)}
+              className="sm:col-span-2 rounded-2xl bg-white/[0.03] border border-white/[0.08] p-4 sm:p-5 hover:border-white/[0.15] transition-colors"
+            >
+              <p className="text-xs font-medium tracking-widest text-zinc-500 uppercase mb-3">Core Technologies</p>
+              <div className="flex flex-wrap gap-2">
+                {['Python', 'Machine Learning', 'Computer Vision', 'YOLO', 'React / Next.js', 'Node.js', 'Docker', 'PostgreSQL'].map((s) => (
+                  <span
+                    key={s}
+                    className="rounded-lg bg-white/[0.04] border border-white/[0.07] px-3 py-1.5 text-sm text-zinc-300"
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+          </div>
         </div>
       </div>
     </section>
