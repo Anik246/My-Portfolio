@@ -32,6 +32,11 @@ export type WebsiteSection = {
   bullets: string[];
 };
 
+export type ProjectImage = {
+  src: string;
+  caption: string;
+};
+
 export type Project = {
   slug: string;
   title: string;
@@ -53,6 +58,8 @@ export type Project = {
   teamCollaboration?: TeamCollaboration;
   resultAnalysis?: ResultAnalysis;
   websiteSections?: WebsiteSection[];
+  images?: ProjectImage[];
+  mobileImages?: ProjectImage[];
   github?: string;
   publication?: Publication;
 };
@@ -448,24 +455,32 @@ export const projectsData: Record<string, Project> = {
     ],
     features: [
       {
-        title: 'Fractional Ownership Flows',
-        description: 'Built UI and backend logic allowing users to invest in tokenized real estate with fractional shares starting at $1.',
+        title: 'Full-Stack Web Platform',
+        description: 'Designed and developed the complete web platform end-to-end — investor portal, admin panel, live trading interface, and KYC/compliance workflows — owning both frontend and backend from design to deployment.',
+      },
+      {
+        title: 'Flutter Mobile Application',
+        description: 'Building the TradeREA mobile app for Android and iOS using Flutter, translating the full web design system into a native mobile experience — covering onboarding, dashboard, trading, portfolio, wallet, and KYC flows.',
+      },
+      {
+        title: 'UI/UX Design',
+        description: 'Designed all web and mobile interfaces from scratch, transforming complex financial data — real-time order books, portfolio analytics, dividend tracking — into clear and intuitive experiences for non-technical investors.',
       },
       {
         title: 'KYC/AML Verification',
-        description: 'Implemented identity verification flows to ensure regulatory compliance for all platform users.',
+        description: 'Implemented identity verification flows across both web and mobile to ensure regulatory compliance for all platform users.',
       },
       {
         title: 'Portfolio Dashboard & Analytics',
-        description: 'Designed and developed a multi-asset management interface with real-time reporting and performance tracking.',
+        description: 'Built a multi-asset management interface with real-time holdings, returns, and asset performance tracking on both platforms.',
       },
       {
         title: 'Secondary Market Trading',
-        description: 'Built trading flows for buying and selling tokenized real estate on the secondary market with instant settlement.',
+        description: 'Built trading flows for buying and selling tokenized real estate on the secondary market with live order books and instant settlement.',
       },
       {
         title: 'Backend Logic & API Integration',
-        description: 'Developed authentication, data handling, and business workflows on the backend; integrated APIs for real-time asset data.',
+        description: 'Developed authentication, data handling, and business workflows on the backend; integrated APIs for real-time asset and market data.',
       },
     ],
     resultAnalysis: {
@@ -477,6 +492,22 @@ export const projectsData: Record<string, Project> = {
         'Fully responsive across web and mobile with clean, accessible UI.',
       ],
     },
+    images: [
+      { src: '/images/dashboard.png', caption: 'Main dashboard — overview of platform activity and key metrics' },
+      { src: '/images/trading.png', caption: 'Trading interface — live order book and asset trading flows' },
+      { src: '/images/user-portfolio.png', caption: 'Investor portfolio — holdings, returns, and asset performance' },
+      { src: '/images/wallet.png', caption: 'Wallet — balance management and transaction history' },
+    ],
+    mobileImages: [
+      { src: '/images/mobiledasbboard.jpeg', caption: 'Dashboard — platform overview' },
+      { src: '/images/portfoliomobile.jpeg', caption: 'Portfolio — holdings and returns' },
+      { src: '/images/tradingmobile.jpeg', caption: 'Trading — buy and sell interface' },
+      { src: '/images/walletmobile.jpeg', caption: 'Wallet — balance and funds' },
+      { src: '/images/offeringmobile.jpeg', caption: 'Offerings — tokenized real estate assets' },
+      { src: '/images/transacionmobile.jpeg', caption: 'Transactions — payment history' },
+      { src: '/images/kycmobile.jpeg', caption: 'KYC — identity verification flow' },
+      { src: '/images/onboardingmobile.jpeg', caption: 'Onboarding — new user sign-up flow' },
+    ],
   },
 };
 

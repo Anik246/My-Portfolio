@@ -23,7 +23,7 @@ export default function Hero() {
               Shahriar<br />Rahman
             </h1>
             <p className="text-lg text-zinc-300 leading-relaxed mb-8 max-w-lg">
-              AI/ML-focused software engineer with a{' '}
+              A builder, designer, and published researcher with a{' '}
               <span className="text-white font-semibold">published deep learning paper (ICTIS 2025, Springer LNNS)</span>{' '}
               and hands-on experience building ML-integrated systems in production. Skilled in computer vision,
               human-computer interaction, and full-stack AI application development.

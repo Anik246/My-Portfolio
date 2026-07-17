@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { ArrowLeft, Github, FileText, Users, CheckCircle, Code, Database, Globe, Shield, Cpu, BarChart3, Layers } from 'lucide-react';
 import { projectsData } from '../data/project';
+import ImageGallery from './ImageGallery';
 
 export function generateStaticParams() {
   return Object.keys(projectsData).map((slug) => ({ slug }));
@@ -191,6 +192,22 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
             ))}
           </div>
         </section>
+
+        {/* UI Showcase */}
+        {project.images && project.images.length > 0 && (
+          <section className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
+            <h2 className="text-xl font-semibold mb-5">Web UI</h2>
+            <ImageGallery images={project.images} />
+          </section>
+        )}
+
+        {/* Mobile UI */}
+        {project.mobileImages && project.mobileImages.length > 0 && (
+          <section className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
+            <h2 className="text-xl font-semibold mb-5">Mobile UI</h2>
+            <ImageGallery images={project.mobileImages} variant="portrait" />
+          </section>
+        )}
 
         {/* Result Analysis */}
         {project.resultAnalysis && (

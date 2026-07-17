@@ -12,11 +12,9 @@ const ITEMS = [
     period: 'Dec 2025 – Present',
     badge: 'Fintech',
     bullets: [
-      'Designing and building responsive UI for a fintech trading platform.',
-      'Integrating backend APIs to power real-time trading and user flows.',
-      'Collaborating on UX decisions to improve usability across web and mobile.',
-      'Ensuring consistent performance and visual quality across key product screens.',
-      'Developing and maintaining backend logic including authentication, data handling, and business workflows.',
+      'Designing and developing TradeREA, a real estate tokenization platform, owning the full stack across an investor portal, admin panel, live trading interface, and KYC/compliance workflows from design to deployment.',
+      'Developing the TradeREA mobile application for Android and iOS using Flutter, translating the web platform\'s design system into a seamless mobile experience.',
+      'Designing the full UI/UX for web and mobile interfaces, transforming complex financial data including real-time order books, portfolio analytics, and dividend tracking into clear and intuitive experiences for non-technical investors.',
     ],
   },
   {

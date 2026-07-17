@@ -13,7 +13,7 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const, delay },
 });
 
-const SKILLS = ['Python', 'JavaScript', 'TypeScript', 'C/C++', 'React', 'Next.js', 'Tailwind CSS', 'Node.js', 'Express', 'PostgreSQL', 'REST APIs', 'Git', 'Docker', 'Computer Vision', 'PyTorch', 'Scikit-learn'];
+const SKILLS = ['Python', 'JavaScript', 'TypeScript', 'C/C++', 'React', 'Next.js', 'Tailwind CSS', 'Flutter', 'Figma', 'UI/UX', 'Node.js', 'Express', 'PostgreSQL', 'Docker', 'Computer Vision', 'PyTorch', 'Scikit-learn'];
 
 const FOCUS = [
   { label: 'AI Research', body: 'Building and evaluating deep learning models for real-world perception tasks.' },
